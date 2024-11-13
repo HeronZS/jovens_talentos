@@ -30,12 +30,30 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST'){
     $num1 = $_POST['num1'];
     $num2 = $_POST['num2'];
 
-    $contador = ' ';
 
     function verificar($a, $b){
-     
 
+        $contador = ' ';
+        
+        if ($a < $b) {
+            for($i = $a + 1; $i < $b; $i++) {
+                $contador .= $i . ' ';
+            }
+        }
+        elseif ($a > $b) {
+            for($i = $a - 1; $i > $b; $i--) {
+                $contador .= $i . ' ';
+            }
+        }
+        else{
+            $contador = "Os números são iguais, não há valoes intemediários";
+        }
+
+        return $contador;
+    }
 
     echo verificar($num1, $num2);
 
 }
+
+?>
