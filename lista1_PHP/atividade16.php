@@ -44,10 +44,10 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST'){
         $salarioMes = $sh * HORAS;
         $sobra = $salarioMes - $alu;
 
-        echo 'Olá, ' . $n .', você tem ' . $idade . ' anos, você ganha ' . 'R$' . number_format($salarioMes) . ' por mês.' . ' Sabendo que seu aluguel é de R$' . number_format($alu) . ' lhe resta R$' . number_format($sobra);
+        echo 'Olá, ' . $n . ', você tem ' . $idade . ' anos, você ganha ' . 'R$' . number_format($salarioMes, 2, ',', '.') . ' por mês.' . ' Sabendo que seu aluguel é de R$' . number_format($alu, 2, ',', '.') . ' lhe resta R$' . number_format($sobra, 2, ',', '.');
     }
     
-    echo exibirTexto($nome, $ano, $salarioHora, $aluguel);
+    exibirTexto($nome, $ano, $salarioHora, $aluguel);
 
 }
 
