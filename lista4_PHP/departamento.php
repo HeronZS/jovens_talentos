@@ -1,5 +1,4 @@
 
-
 <!DOCTYPE HTML>
 <html lang = "pt-br">
 
@@ -26,7 +25,7 @@
         </nav>
 
         <fieldset>
-            <legend>Listagem de cidades:</legend>
+            <legend>Listagem de departamentos:</legend>
             <table>
 
 
@@ -37,11 +36,11 @@
                 </tr>
 
                 <?php
-                    foreach ($cidades as $cidade){
+                    foreach ($departamentos as $departamento){
                         echo '<tr>';
-                        echo '<td>' . $cidade['cidcodigo'] . '</td>';
-                        echo '<td>' . $cidade['cidnome'] . '</td>';
-                        echo '<td><a href="?deletarCidade=' . $cidade['cidcodigo'] . '">Excluir</a></td>';
+                        echo '<td>' . $departamento['dptcodigo'] . '</td>';
+                        echo '<td>' . $departamento['dptdescricao'] . '</td>';
+                        echo '<td><a href="?deletar_departamento=' . $departamento['dptcodigo'] . '">Excluir</a></td>';
                         echo '</tr>';
                     }
                 ?>
@@ -52,13 +51,13 @@
         </fieldset>
 
         <fieldset>
-            <legend>Cadastro de Cidade:</legend>
+            <legend>Cadastro de Departamento:</legend>
             <form method="POST">
 
-                <label for = "nome_cidade">Nome:</label>
-                <input type = "text" name = "nome_cidade" required>
+                <label for = "nome_departamento">Nome:</label>
+                <input type = "text" name = "nome_departamento" required>
 
-                <input type="submit" name="cadastrarCidade" value="Cadastrar">
+                <input type="submit" name="cadastrarDepartamento" value="Cadastrar">
             </form>
         </fieldset>
 
@@ -73,17 +72,17 @@
 
 require_once 'functions.php';
 require_once 'db.php';
-$cidades = listar('TBCIDADE','CIDNOME');
+$departamentos = listar('TBDEPARTAMENTO','DPTDESCRICAO');
 
-if (isset($_POST['cadastrarCidade'])){
-    $nomeCidade = pg_escape_string($_POST['nome_cidade']);
-    $value = "'$nomeCidade'";
-    inserir('cidade.php','TBCIDADE', 'CIDNOME', $value);
+if (isset($_POST['cadastrarDepartamento'])){
+    $nomeDepartamento = pg_escape_string($_POST['nome_departamento']);
+    $value = "'$nomeDepartamento'";
+    inserir('departamento.php','TBDEPARTAMENTO', 'DPTDESCRICAO', $value);
 }
 
-if (isset($_GET['deletarCidade'])){
-    $codigo = $_GET['deletarCidade'];
-    excluir('cidade.php', 'TBCIDADE', 'CIDCODIGO', $codigo);
+if (isset($_GET['deletar_departamento'])){
+    $codigo = $_GET['deletar_departamento'];
+    excluir('departamento.php', 'TBDEPARTAMENTO', 'DPTCODIGO', $codigo);
 }
 
 ?>
